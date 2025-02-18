@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    resize: none;
+
+}
+
+:root{
+    --color-primary:#fff;
+    --color-secondary:#666;
+    --color-tertiary:#777;
+    --color-text:333;
+    --shadow:2px 40px 3px rgb(15,15,15);
+    --transition:all .4s ease-in-out ;
+
+    --width-lg: 85%;
+
+
+}
+
+body{
+    font-family: "Lora", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal; 
+
+}
+
+::-webkit-scrollbar{
+    height: .5rem;
+    width: .5rem;
+}
+::-webkit-scrollbar-track{
+    background: var(--color-primary);
+}
+::-webkit-scrollbar-thumb{
+    background: var(--color-secondary);
+}
+img{
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+a{
+    color: var(--color-text);
+}
+h1{
+    font-size: 5rem;
+    color: black;
+}
+h1,h2,h3,h4{
+    line-height: 1.2;
+}
+h1{
+    font-size: 2.8rem;
+}
+h2{
+    font-size: 2rem;
+}
+h3{
+    font-size: 1.0rem;
+}
+h4{
+    font-size: 1.3rem;
+}
+h5{
+    font-size: 1rem;
+}
+.container{
+    margin: 0 auto;
+    width: var(--width-lg);
+}
+section{
+    padding: 6rem 0 3rem;
+}
+section h2{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+nav{
+    background: var(--color-text);
+    color: var(--color-primary) !important;
+}
+.logo{
+    color: var(--color-primary);
+}
+.logo div:first-child{
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.logo div:first-child span{
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--color-secondary);
+}
+.logo div:last-child{
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: .7rem;
+    color: #999;
+}
+.nav-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+nav .navlist{
+    display: flex;
+}
+nav  .navlist li{
+    text-transform: uppercase;
+    font-size: 9rem;
+    cursor: pointer;
+    z-index: 111;
+}nav .navlist li a{
+    color: var(--color-primary);
+    padding: 2rem;
+    position: relative;
+}
+.navlist li a::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--color-secondary);
+    height: 95%;
+    width: 100%;
+    border-bottom: 2rem solid var(--color-primary);
+    z-index: -1;
+    transition: var(--transition);
+    opacity: 0;
+    visibility: hidden;
+}
+.navlist li a:hover::before
+.navlist li a:active::before
+{
+    height: 95%;
+    opacity: 1;
+    visibility:visible;
+}
