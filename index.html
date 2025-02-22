@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeautyHub | Premium Beauty Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #000000;          /* Bold Black */
+            --secondary: #8B00FF;        /* Violet */
+            --dark: #FF1493;            /* Deep Pink (replacing Peach) */
+            --light: #FFFFFF;            /* White */
+            --accent: #FFD700;           /* Yellow */
+            --highlight: #800080;        /* Purple */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+        }
+        .service-box .service-image .servic-image{
+            height: 350px;
+            width: 350px;
+            margin: 10px;
+        }
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary); /* Black border */
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);          /* Red logo text */
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary); /* Violet underline */
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--dark);          /* Red hover text */
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                        url('media/hero-bg.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--dark);      /* Red buttons */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary); /* Violet hover */
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);        /* Black titles */
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            border-bottom: 2px solid var(--dark); /* Red underline */
+            padding-bottom: 10px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1rem;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Products Section Styles */
+        .products-container {
+            padding: 2rem 0;
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-tab {
+            padding: 0.8rem 2rem;
+            border: none;
+            background: none;
+            color: var(--dark);
+            font-size: 1.1rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .category-tab.active {
+            color: var(--dark);          /* Red active tab */
+        }
+
+        .category-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--dark);      /* Red active tab underline */
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: 1px solid var(--primary); /* Black border */
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--dark);      /* Red badges */
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .product-price {
+            color: var(--dark);          /* Red prices */
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary);   /* Black buttons */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: var(--secondary); /* Violet hover */
+        }
+
+        /* Shopping Cart Styles */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 350px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1001;
+            padding: 2rem;
+            border-left: 2px solid var(--primary); /* Black border */
+        }
+
+        .cart-modal.active {
+            display: block;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: var(--primary);   /* Black header */
+            color: var(--light);         /* White text */
+        }
+
+        .cart-items {
+            max-height: calc(100vh - 250px);
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .cart-total {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #eee;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);   /* Black chatbot button */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .chatbot-toggle i {
+            color: white;
+            font-size: 24px;
+        }
+
+        .chatbot-box {
+            display: none;
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .chatbot-box.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chatbot-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .message.bot {
+            background: var(--secondary); /* Violet bot messages */
+            margin-right: auto;
+            color: var(--light);         /* White text */
+        }
+
+        .message.user {
+            background: var(--primary);   /* Black user messages */
+            color: var(--light);         /* White text */
+            margin-left: auto;
+        }
+
+        .chat-input {
+            padding: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .send-message {
+            background: var(--dark);      /* Red send button */
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Image Gallery Styles */
+        .image-gallery {
+            margin: 4rem 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Contact Section Styles */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-info h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-info > p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item i {
+            color: var(--dark);          /* Red icons */
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        .info-item h4 {
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .info-item p {
+            color: #666;
+        }
+
+        .business-hours {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        .business-hours h4 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .business-hours ul {
+            list-style: none;
+        }
+
+        .business-hours li {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--dark);    /* Red border on focus */
+            outline: none;
+        }
+
+        .submit-btn {
+            background: var(--primary);   /* Black submit button */
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary); /* Violet hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .journey-section {
+            margin-bottom: 4rem;
+        }
+
+        .journey-section h3,
+        .success-story h3 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--secondary); /* Violet timeline */
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .timeline-item:nth-child(odd) .content {
+            margin-left: 2rem;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(even) .content {
+            margin-right: 2rem;
+            text-align: right;
+            order: -1;
+        }
+
+        .year {
+            background: var(--dark);      /* Red year badges */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 0 1rem;
+        }
+
+        .content {
+            flex: 0 1 40%;
+        }
+
+        .content h4 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .success-story {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .story-card {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .story-image {
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-quote {
+            font-style: italic;
+            color: var(--secondary);      /* Violet quotes */
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .story-details {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .story-details ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .story-details li {
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-statement {
+            margin-top: 1rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 2rem;
+            }
+
+            .timeline-item:nth-child(even) .content {
+                margin-right: 0;
+                text-align: left;
+                order: 1;
+            }
+
+            .timeline-item:nth-child(odd) .content {
+                margin-left: 0;
+            }
+
+            .year {
+                margin: 1rem 0;
+            }
+
+            .story-card {
+                grid-template-columns: 1fr;
+            }
+
+            .story-image {
+                height: 300px;
+            }
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            text-align: center;
+            color: var(--dark);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-box {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: 2px solid var(--primary); /* Black border */
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-info {
+            padding: 1.5rem;
+        }
+
+        .service-info h4 {
+            color: var(--dark);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            color: var(--dark);          /* Red prices */
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-details {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-details li {
+            color: #666;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-details li::before {
+            content: '✓';
+            color: var(--dark);          /* Red checkmarks */
+            position: absolute;
+            left: 0;
+        }
+
+        .book-service {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary);   /* Black buttons */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .book-service:hover {
+            background: var(--secondary); /* Violet hover */
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .main-footer {
+            background: var(--primary);
+            color: var(--light);
+            padding: 4rem 5% 0;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+        }
+
+        .footer-logo {
+            text-align: center;
+        }
+
+        .footer-logo img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--dark);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--dark);
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
+        }
+        .hero{
+            background-image: url(media/Background\ .jpg);
+            background-size: contain;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="media/logo.png" alt="BeautyHub Logo">
+                <h1>BeautyHub</h1>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to BeautyHub</h1>
+                <p>Your premier destination for beauty and wellness</p>
+                <a href="#services" class="cta-button">Explore Services</a>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-container">
+                <div class="journey-section">
+                    <h3>Our Journey</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="year">2015</div>
+                            <div class="content">
+                                <h4>The Beginning</h4>
+                                <p>Started as a small beauty boutique with a vision to transform the beauty industry through quality products and personalized service.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">2017</div>
+                            <div class="content">
+                                <h4>Expansion Phase</h4>
+                                <p>Expanded our product line to include premium makeup, hair care, and hand care products. Opened our second location.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">2019</div>
+                            <div class="content">
+                                <h4>Digital Transformation</h4>
+                                <p>Launched our e-commerce platform to reach beauty enthusiasts nationwide. Introduced virtual beauty consultations.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">2021</div>
+                            <div class="content">
+                                <h4>Innovation & Growth</h4>
+                                <p>Developed our own line of organic beauty products. Reached milestone of serving 100,000+ satisfied customers.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">2023</div>
+                            <div class="content">
+                                <h4>Global Presence</h4>
+                                <p>Expanded to international markets. Launched sustainable packaging initiative and eco-friendly product lines.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="success-story">
+                    <h3>Success Story</h3>
+                    <div class="story-card">
+                        <div class="story-image">
+                            <img src="media/success-story.jpg" alt="Andrew Tate Success Story">
+                        </div>
+                        <div class="story-content">
+                            <h4>Andrew Tate's Transformation</h4>
+                            <p class="story-quote">"BeautyHub transformed not just my appearance, but my entire approach to self-care and confidence."</p>
+                            <div class="story-details">
+                                <p>Andrew Tate's journey with BeautyHub began in 2020 when he was looking for premium grooming products. What started as a simple search for quality hair care products turned into a complete transformation of his personal care routine.</p>
+                                <p>Key Achievements with BeautyHub:</p>
+                                <ul>
+                                    <li>Developed a comprehensive skincare routine</li>
+                                    <li>Discovered perfect hair care products for his lifestyle</li>
+                                    <li>Enhanced his personal brand through improved grooming</li>
+                                    <li>Became a brand ambassador in 2022</li>
+                                </ul>
+                                <p class="impact-statement">"The quality of BeautyHub's products and their expert guidance helped me maintain my appearance at the highest level, which is crucial for my personal brand and business ventures."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-container">
+                <!-- Makeup Services -->
+                <div class="service-category">
+                    <h3 class="category-title">Makeup Services</h3>
+                    <div class="services-grid">
+                        <div class="service-box">
+                            <div class="service-image">
+                                <img src="media/Bridal make-up.jpg" alt="Bridal Makeup" class="servic-image">
+                            </div>
+                            <div class="service-info">
+                                <h4>Bridal Makeup</h4>
+                                <p class="price">From $299</p>
+                                <ul class="service-details">
+                                    <li>Complete bridal look</li>
+                                    <li>Pre-wedding trial</li>
+                                    <li>Long-lasting products</li>
+                                    <li>Touch-up kit</li>
+                                </ul>
+                                <button class="book-service">Book Appointment</button>
+                            </div>
+                        </div>
+
+                        <div class="service-box">
+                            <div class="service-image">
+                                <img src="media/Party make-up.jpg" alt="Party Makeup" class="servic-image">
+                            </div>
+                            <div class="service-info">
+                                <h4>Party Makeup</h4>
+                                <p class="price">From $99</p>
+                                <ul class="service-details">
+                                    <li>Glamorous evening look</li>
+                                    <li>Premium products</li>
+                                    <li>Lash application</li>
+                                    <li>4-6 hours lasting</li>
+                                </ul>
+                                <button class="book-service">Book Appointment</button>
+                            </div>
+                        </div>
+
+                        <div class="service-box">
+                            <div class="service-image">
+                                <img src="media/Natural make-up.jpg" alt="Natural Makeup" class="servic-image">
+                            </div>
+                            <div class="service-info">
+                                <h4>Natural Makeup</h4>
+                                <p class="price">From $79</p>
+                                <ul class="service-details">
+                                    <li>Everyday fresh look</li>
+                                    <li>Natural finish</li>
+                                    <li>Skin-friendly products</li>
+                                    <li>Quick service</li>
+                                </ul>
+                                <button class="book-service">Book Appointment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hair Services -->
+                <div class="service-category">
+                    <h3 class="category-title">Hair Services</h3>
+                    <div class="services-grid">
+                        <div class="service-box">
+                            <div class="service-image">
+                                <img src="media/Haircut and styling.jpg" alt="Haircut & Styling" class="servic-image">
+                            </div>
+                            <div class="service-info">
+                                <h4>Haircut & Styling</h4>
+                                <p class="price">From $89</p>
+                                <ul class="service-details">
+                                    <li>Consultation included</li>
+                                    <li>Wash and style</li>
+                                    <li>Professional products</li>
+                                    <li>Styling tips</li>
+                                </ul>
+                                <button class="book-service">Book Appointment</button>
+                            </div>
+                        </div>
+
+                        <div class="service-box">
+                            <div class="service-image">
+                                <img src="media/Hair colouring.jpg" alt="Hair Coloring" class="servic-image">
+                            </div>
+                            <div class="service-info">
+                                <h4>Hair Coloring</h4>
+                                <p class="price">From $149</p>
+                                <ul class="service-details">
+                                    <li>Premium color products</li>
+                                    <li>Color consultation</li>
+                                    <li>Treatment included</li>
+                                    <li>Aftercare advice</li>
+                                </ul>
+                                <button class="book-service">Book Appointment</button>
+                            </div>
+                        </div>
+
+                        <div class="service-box">
+                            <div class="service-image">
+                                <img src="media/Hair repair treatment.jpg" alt="Hair Treatment" class="servic-image">
+                            </div>
+                            <div class="service-info">
+                                <h4>Hair Treatment</h4>
+                                <p class="price">From $119</p>
+                                <ul class="service-details">
+                                    <li>Deep conditioning</li>
+                                    <li>Scalp treatment</li>
+                                    <li>Damage repair</li>
+                                    <li>Hair mask</li>
+                                </ul>
+                                <button class="book-service">Book Appointment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hand Care Services -->
+                <div class="service-category">
+                    <h3 class="category-title">Hand Care Services</h3>
+                    <div class="services-grid">
+                        <div class="service-box">
+                            <div class="service-image">
+                                <img src="media/manicure.jpg" alt="Luxury Manicure" class="servic-image">
+                            </div>
+                            <div class="service-info">
+                                <h4>Luxury Manicure</h4>
+                                <p class="price">From $59</p>
+                                <ul class="service-details">
+                                    <li>Nail shaping</li>
+                                    <li>Cuticle care</li>
+                                    <li>Hand massage</li>
+                                    <li>Premium polish</li>
+                                </ul>
+                                <button class="book-service">Book Appointment</button>
+                            </div>
+                        </div>
+
+                        <div class="service-box">
+                            <div class="service-image">
+                                <img src="media/Nail art.jpg" alt="Nail Art" class="servic-image">
+                            </div>
+                            <div class="service-info">
+                                <h4>Nail Art Design</h4>
+                                <p class="price">From $79</p>
+                                <ul class="service-details">
+                                    <li>Custom designs</li>
+                                    <li>Gel polish</li>
+                                    <li>3D decorations</li>
+                                    <li>Long-lasting finish</li>
+                                </ul>
+                                <button class="book-service">Book Appointment</button>
+                            </div>
+                        </div>
+
+                        <div class="service-box">
+                            <div class="service-image">
+                                <img src="media/Hand care treatment.jpg" alt="Hand Treatment" class="servic-image">
+                            </div>
+                            <div class="service-info">
+                                <h4>Hand Treatment</h4>
+                                <p class="price">From $69</p>
+                                <ul class="service-details">
+                                    <li>Exfoliation</li>
+                                    <li>Paraffin wax</li>
+                                    <li>Moisturizing mask</li>
+                                    <li>Anti-aging care</li>
+                                </ul>
+                                <button class="book-service">Book Appointment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="section">
+            <h2 class="section-title">Our Products</h2>
+            
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="makeup">Makeup</button>
+                <button class="category-tab" data-category="hair">Hair Care</button>
+                <button class="category-tab" data-category="hands">Hand Care</button>
+            </div>
+
+            <div class="products-container">
+                <!-- Makeup Products -->
+                <div class="products-grid" id="makeup">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/Foundation.jpg" alt="Luxury Foundation">
+                            <span class="product-badge">New</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Luxury Foundation</h3>
+                            <p class="product-price">$39.99</p>
+                            <button class="add-to-cart" data-id="m1" data-name="Luxury Foundation" data-price="39.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/Lipstick.jpg" alt="Matte Lipstick">
+                            <span class="product-badge">Best Seller</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Velvet Matte Lipstick</h3>
+                            <p class="product-price">$24.99</p>
+                            <button class="add-to-cart" data-id="m2" data-name="Velvet Matte Lipstick" data-price="24.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/Eyeshadow.jpg" alt="Eyeshadow Palette">
+                            <span class="product-badge">Popular</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Sunset Eyeshadow Palette</h3>
+                            <p class="product-price">$45.99</p>
+                            <button class="add-to-cart" data-id="m3" data-name="Sunset Eyeshadow Palette" data-price="45.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/Mascara.jpg" alt="Mascara">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Volume Boost Mascara</h3>
+                            <p class="product-price">$19.99</p>
+                            <button class="add-to-cart" data-id="m4" data-name="Volume Boost Mascara" data-price="19.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/concealer.jpg" alt="Concealer">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Full Coverage Concealer</h3>
+                            <p class="product-price">$29.99</p>
+                            <button class="add-to-cart" data-id="m5" data-name="Full Coverage Concealer" data-price="29.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/powder blush.jpg" alt="Blush">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Natural Glow Blush</h3>
+                            <p class="product-price">$22.99</p>
+                            <button class="add-to-cart" data-id="m6" data-name="Natural Glow Blush" data-price="22.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/Highlighter.jpg" alt="Highlighter">
+                            <span class="product-badge">Trending</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Shimmer Highlighter</h3>
+                            <p class="product-price">$27.99</p>
+                            <button class="add-to-cart" data-id="m7" data-name="Shimmer Highlighter" data-price="27.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/eyeliner.jpg" alt="Eyeliner">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Liquid Eyeliner Pen</h3>
+                            <p class="product-price">$18.99</p>
+                            <button class="add-to-cart" data-id="m8" data-name="Liquid Eyeliner Pen" data-price="18.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/setting powder.jpg" alt="Setting Powder">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Translucent Setting Powder</h3>
+                            <p class="product-price">$32.99</p>
+                            <button class="add-to-cart" data-id="m9" data-name="Translucent Setting Powder" data-price="32.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/primer.png" alt="Primer">
+                            <span class="product-badge">Must Have</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Pore Minimizing Primer</h3>
+                            <p class="product-price">$34.99</p>
+                            <button class="add-to-cart" data-id="m10" data-name="Pore Minimizing Primer" data-price="34.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hair Care Products -->
+                <div class="products-grid" id="hair" style="display: none;">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/repair shampoo.jpg" alt="Repair Shampoo">
+                            <span class="product-badge">Best Seller</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Repair Shampoo</h3>
+                            <p class="product-price">$28.99</p>
+                            <button class="add-to-cart" data-id="h1" data-name="Repair Shampoo" data-price="28.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/conditioner.jpg" alt="Moisturizing Conditioner">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Moisturizing Conditioner</h3>
+                            <p class="product-price">$26.99</p>
+                            <button class="add-to-cart" data-id="h2" data-name="Moisturizing Conditioner" data-price="26.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/hair treatment.jpg" alt="Hair Treatment Mask">
+                            <span class="product-badge">New</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Deep Treatment Mask</h3>
+                            <p class="product-price">$34.99</p>
+                            <button class="add-to-cart" data-id="h3" data-name="Deep Treatment Mask" data-price="34.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/Hair serum.jpg" alt="Hair Serum">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Anti-Frizz Serum</h3>
+                            <p class="product-price">$29.99</p>
+                            <button class="add-to-cart" data-id="h4" data-name="Anti-Frizz Serum" data-price="29.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/Argan oil.jpg" alt="Hair Oil">
+                            <span class="product-badge">Best Seller</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Argan Hair Oil</h3>
+                            <p class="product-price">$32.99</p>
+                            <button class="add-to-cart" data-id="h5" data-name="Argan Hair Oil" data-price="32.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/hair spray.jpg" alt="Hair Spray">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Flexible Hold Hairspray</h3>
+                            <p class="product-price">$25.99</p>
+                            <button class="add-to-cart" data-id="h6" data-name="Flexible Hold Hairspray" data-price="25.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/hair growth vitamin.jpg" alt="Hair Vitamins">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Hair Growth Vitamins</h3>
+                            <p class="product-price">$39.99</p>
+                            <button class="add-to-cart" data-id="h7" data-name="Hair Growth Vitamins" data-price="39.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/Dry shampoo.jpg" alt="Dry Shampoo">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Refreshing Dry Shampoo</h3>
+                            <p class="product-price">$23.99</p>
+                            <button class="add-to-cart" data-id="h8" data-name="Refreshing Dry Shampoo" data-price="23.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/hair brush.jpg" alt="Hair Brush">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Detangling Brush</h3>
+                            <p class="product-price">$19.99</p>
+                            <button class="add-to-cart" data-id="h9" data-name="Detangling Brush" data-price="19.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/keratin mask.jpg" alt="Hair Mask">
+                            <span class="product-badge">Popular</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Keratin Hair Mask</h3>
+                            <p class="product-price">$36.99</p>
+                            <button class="add-to-cart" data-id="h10" data-name="Keratin Hair Mask" data-price="36.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hand Care Products -->
+                <div class="products-grid" id="hands" style="display: none;">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/Hand-cream.jpg" alt="Luxury Hand Cream">
+                            <span class="product-badge">New</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Luxury Hand Cream</h3>
+                            <p class="product-price">$19.99</p>
+                            <button class="add-to-cart" data-id="hc1" data-name="Luxury Hand Cream" data-price="19.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/Nail treatment oil.jpg" alt="Nail Treatment Oil">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Nail Treatment Oil</h3>
+                            <p class="product-price">$15.99</p>
+                            <button class="add-to-cart" data-id="hc2" data-name="Nail Treatment Oil" data-price="15.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/hand scrub.jpg" alt="Hand Scrub">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Exfoliating Hand Scrub</h3>
+                            <p class="product-price">$22.99</p>
+                            <button class="add-to-cart" data-id="hc3" data-name="Exfoliating Hand Scrub" data-price="22.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/cuticle oil.jpg" alt="Cuticle Oil">
+                            <span class="product-badge">Best Seller</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Nourishing Cuticle Oil</h3>
+                            <p class="product-price">$17.99</p>
+                            <button class="add-to-cart" data-id="hc4" data-name="Nourishing Cuticle Oil" data-price="17.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/Hand mask.jpg" alt="Hand Mask">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Intensive Hand Mask</h3>
+                            <p class="product-price">$24.99</p>
+                            <button class="add-to-cart" data-id="hc5" data-name="Intensive Hand Mask" data-price="24.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/nail polish.jpg" alt="Nail Polish">
+                            <span class="product-badge">New</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Long-lasting Nail Polish</h3>
+                            <p class="product-price">$16.99</p>
+                            <button class="add-to-cart" data-id="hc6" data-name="Long-lasting Nail Polish" data-price="16.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/Hand serum.jpg" alt="Hand Serum">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Anti-aging Hand Serum</h3>
+                            <p class="product-price">$29.99</p>
+                            <button class="add-to-cart" data-id="hc7" data-name="Anti-aging Hand Serum" data-price="29.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/manicure.jpg" alt="Nail Kit">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Professional Manicure Kit</h3>
+                            <p class="product-price">$45.99</p>
+                            <button class="add-to-cart" data-id="hc8" data-name="Professional Manicure Kit" data-price="45.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/hand lotion.jpg" alt="Hand Lotion">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Overnight Hand Treatment</h3>
+                            <p class="product-price">$26.99</p>
+                            <button class="add-to-cart" data-id="hc9" data-name="Overnight Hand Treatment" data-price="26.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="media/Nail Strengthener.jpg" alt="Nail Strengthener">
+                            <span class="product-badge">Popular</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Nail Strengthening Treatment</h3>
+                            <p class="product-price">$21.99</p>
+                            <button class="add-to-cart" data-id="hc10" data-name="Nail Strengthening Treatment" data-price="21.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Beauty Gallery</h2>
+            <div class="image-gallery">
+                <div class="gallery-grid">
+                    <!-- Makeup Images -->
+                    <div class="gallery-item">
+                        <img src="media/makeup-look 1.jpg" alt="Makeup Look 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="media/makeup-look 2.jpg" alt="Makeup Look 2">
+                    </div>
+
+                    <!-- Hair Style Images -->
+                    <div class="gallery-item">
+                        <img src="media/Hairstyle-1.jpg" alt="Hair Style 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="media/Hairstyle-2.jpg" alt="Hair Style 2">
+                    </div>
+
+                    <!-- Hand Care Images -->
+                    <div class="gallery-item">
+                        <img src="media/Manicure-1.jpg" alt="Manicure 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="media/manicure-2.jpg" alt="Manicure 2">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Have questions about our products or services? We're here to help!</p>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>123 Beauty Street, Fashion District<br>New York, NY 10001</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@beautyhub.com</p>
+                        </div>
+                    </div>
+
+                    <div class="business-hours">
+                        <h4>Business Hours</h4>
+                        <ul>
+                            <li>Monday - Friday: 9:00 AM - 8:00 PM</li>
+                            <li>Saturday: 10:00 AM - 6:00 PM</li>
+                            <li>Sunday: Closed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="product">Product Inquiry</option>
+                            <option value="service">Service Booking</option>
+                            <option value="support">Customer Support</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-total">
+            <h4>Total: $<span id="cart-total-amount">0.00</span></h4>
+            <button class="checkout-btn cta-button">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-container">
+        <div class="chatbot-toggle">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chatbot-box">
+            <div class="chatbot-header">
+                <h3>Beauty Assistant</h3>
+                <button class="close-chat"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages">
+                <div class="message bot">
+                    Hello! 👋 I'm your beauty assistant. How can I help you today?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your question...">
+                <button class="send-message"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add this footer section before the closing body tag -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="media/logo.png" alt="BeautyHub Logo">
+                <h3>BeautyHub</h3>
+                <p>Your Premium Beauty Destination</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#makeup">Makeup</a></li>
+                        <li><a href="services.html#hair">Hair Care</a></li>
+                        <li><a href="services.html#hands">Hand Care</a></li>
+                        <li><a href="services.html#bridal">Bridal Services</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> info@beautyhub.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 BeautyHub. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Product Category Tabs
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const productGrids = document.querySelectorAll('.products-grid');
+
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Hide all product grids
+                productGrids.forEach(grid => grid.style.display = 'none');
+                // Show selected category
+                document.getElementById(tab.dataset.category).style.display = 'grid';
+            });
+        });
+
+        // Shopping Cart Functionality
+        const cartIcon = document.querySelector('.cart-icon');
+        const cartModal = document.querySelector('.cart-modal');
+        const closeCart = document.querySelector('.close-cart');
+        const cartItems = document.querySelector('.cart-items');
+        const cartCount = document.querySelector('.cart-count');
+        const cartTotal = document.getElementById('cart-total-amount');
+
+        let cart = [];
+
+        cartIcon.addEventListener('click', () => {
+            cartModal.classList.add('active');
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartModal.classList.remove('active');
+        });
+
+        // Add to Cart
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const product = {
+                    id: button.dataset.id,
+                    name: button.dataset.name,
+                    price: parseFloat(button.dataset.price),
+                    quantity: 1
+                };
+
+                addToCart(product);
+                updateCartUI();
+            });
+        });
+
+        function addToCart(product) {
+            const existingItem = cart.find(item => item.id === product.id);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push(product);
+            }
+        }
+
+        function updateCartUI() {
+            // Update cart count
+            cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+
+            // Update cart items
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="media/product${item.id}.jpg" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <h4>${item.name}</h4>
+                        <p>$${item.price} x ${item.quantity}</p>
+                        <button onclick="removeFromCart('${item.id}')" class="remove-item">Remove</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = total.toFixed(2);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+        }
+
+        // Chatbot Functionality
+        const chatbotToggle = document.querySelector('.chatbot-toggle');
+        const chatbotBox = document.querySelector('.chatbot-box');
+        const closeChat = document.querySelector('.close-chat');
+        const chatInput = document.querySelector('.chat-input input');
+        const sendMessage = document.querySelector('.send-message');
+        const chatMessages = document.querySelector('.chat-messages');
+
+        // Simple responses database
+        const responses = {
+            'hello': 'Hi there! How can I help you today?',
+            'hi': 'Hello! What can I assist you with?',
+            'price': 'Our prices vary by product. Is there a specific item you\'re interested in?',
+            'makeup': 'We offer a wide range of makeup products including foundations, lipsticks, and eye makeup. What are you looking for?',
+            'hair': 'Our hair care collection includes shampoos, conditioners, and styling products. Need any specific recommendations?',
+            'hands': 'We have various hand care products including creams, treatments, and nail care items. What would you like to know?',
+            'default': 'I\'m here to help! Please ask about our products, services, or beauty tips.'
+        };
+
+        chatbotToggle.addEventListener('click', () => {
+            chatbotBox.classList.add('active');
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatbotBox.classList.remove('active');
+        });
+
+        function addMessage(message, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(isUser ? 'user' : 'bot');
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getResponse(message) {
+            message = message.toLowerCase();
+            for (let key in responses) {
+                if (message.includes(key)) {
+                    return responses[key];
+                }
+            }
+            return responses.default;
+        }
+
+        function handleMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+                
+                // Simulate bot typing
+                setTimeout(() => {
+                    const response = getResponse(message);
+                    addMessage(response);
+                }, 500);
+            }
+        }
+
+        sendMessage.addEventListener('click', handleMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleMessage();
+            }
+        });
+
+        // Contact Form Handling
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const formObject = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+            
+            // Here you would typically send the form data to your server
+            console.log('Form Data:', formObject);
+        });
+
+        // Service Booking Functionality
+        const bookButtons = document.querySelectorAll('.book-service');
+        
+        bookButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const service = button.parentElement.querySelector('h4').textContent;
+                alert(`Thank you for choosing ${service}! Our team will contact you shortly to confirm your appointment.`);
+            });
+        });
+    </script>
+</body>
+</html>
